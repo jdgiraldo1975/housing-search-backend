@@ -1,0 +1,17 @@
+{
+  "name": "housing-search-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js",
+  "scrape": "node scraper/index.js",
+  "send-daily": "node email/index.js daily",
+  "send-weekly": "node email/index.js weekly",
+  "cron": "node cron/index.js"
+},
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
