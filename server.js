@@ -172,3 +172,7 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));
 
 module.exports = { app, pool };
+// Iniciar cron jobs si estamos en producción
+if (process.env.NODE_ENV === 'production') {
+  require('./cron');
+}
