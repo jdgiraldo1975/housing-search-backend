@@ -33,8 +33,8 @@ cron.schedule('0 8 * * *', async () => {
   timezone: 'Europe/Zurich'
 });
 
-// Alertas semanales cada lunes a las 9:00 AM
-cron.schedule('0 9 * * 1', async () => {
+// Alertas semanales cada lunes a las 6:00 PM
+cron.schedule('0 18 * * 1', async () => {
   console.log('[CRON] Sending weekly alerts...');
   try {
     await sendAllAlerts('weekly');

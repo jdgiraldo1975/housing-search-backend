@@ -36,7 +36,7 @@ async function scrapeHomegate(location = 'Nyon', radiusKm = 10, maxPrice = 3500,
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     
     // Construir URL de búsqueda
-    const searchUrl = `https://www.homegate.ch/rent/real-estate/city-${location.toLowerCase()}/matching-list?ep=${maxPrice}&nb=${minRooms}`;
+    const searchUrl = `https://www.homegate.ch/rent/real-estate/matching-list?ep=${maxPrice}&nrf=${minRooms}&loc=${location}`;
     
     console.log(`📍 URL: ${searchUrl}`);
     
@@ -215,9 +215,9 @@ async function runFullScrape() {
     
     // Buscar en diferentes ubicaciones
     const locations = [
-      { name: 'Nyon', radius: 10, maxPrice: 3500, minRooms: 4 },
-      { name: 'Gland', radius: 5, maxPrice: 3000, minRooms: 4 }
-    ];
+  { name: '1260', radius: 10, maxPrice: 3500, minRooms: 4 }, // Nyon
+  { name: '1271', radius: 10, maxPrice: 3000, minRooms: 4 }  // Givrins
+];
     
     let totalListings = [];
     
