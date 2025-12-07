@@ -1,6 +1,3 @@
-// ============================================
-// cron/index.js - Tareas Programadas
-// ============================================
 const cron = require('node-cron');
 const { runFullScrape } = require('../scraper');
 const { sendAllAlerts } = require('../email');
@@ -33,8 +30,8 @@ cron.schedule('0 8 * * *', async () => {
   timezone: 'Europe/Zurich'
 });
 
-// Alertas semanales cada lunes a las 6:00 PM
-cron.schedule('0 18 * * 1', async () => {
+// Alertas semanales cada viernes a las 18:00
+cron.schedule('0 18 * * 5', async () => {
   console.log('[CRON] Sending weekly alerts...');
   try {
     await sendAllAlerts('weekly');
@@ -50,72 +47,9 @@ cron.schedule('0 18 * * 1', async () => {
 console.log('[CRON] All scheduled tasks initialized');
 console.log('  - Scraping: Every 6 hours');
 console.log('  - Daily alerts: 8:00 AM CET');
-console.log('  - Weekly alerts: Monday 9:00 AM CET');
+console.log('  - Weekly alerts: Friday 18:00 CET');
 
 process.on('SIGTERM', () => {
   console.log('[CRON] Shutting down...');
   process.exit(0);
 });
-```
-
-**Guarda el archivo** (`Cmd + S`)
-
----
-
-## Ahora algunos archivos de configuración:
-
-### 4. Crear **.gitignore**
-
-1. Haz clic derecho en **HOUSING-SEARCH-BACKEND** (raíz)
-2. **"New File"**
-3. Escribe: `.gitignore`
-
-**Pega esto:**
-```
-node_modules/
-.env
-.env.local
-*.log
-npm-debug.log*
-.DS_Store
-```
-
-**Guarda** (`Cmd + S`)
-
----
-
-### 5. Crear **Procfile**
-
-1. Haz clic derecho en **HOUSING-SEARCH-BACKEND** (raíz)
-2. **"New File"**
-3. Escribe: `Procfile` (sin extensión)
-
-**Pega esto:**
-```
-web: node server.js
-```
-
-**Guarda** (`Cmd + S`)
-
----
-
-## ✅ ¡Ya tienes todos los archivos!
-
-Tu estructura debería verse así:
-```
-HOUSING-SEARCH-BACKEND
-├── node_modules/
-├── scraper/
-│   └── index.js ✅
-├── email/
-│   └── index.js ✅
-├── cron/
-│   └── index.js ✅
-├── database/
-├── scripts/
-├── server.js ✅
-├── .env ✅
-├── .gitignore ✅
-├── Procfile ✅
-├── package.json
-└── package-lock.json
